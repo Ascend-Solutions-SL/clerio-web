@@ -1,10 +1,10 @@
 "use client";
-import { motion, useScroll, useTransform, useSpring } from "framer-motion";
+import { motion, useScroll, useTransform, useSpring, type MotionValue } from "framer-motion";
 import Link from "next/link";
 import { useEffect, useRef, useState, type ReactNode } from "react";
 
 // Child component to keep hooks order stable
-function Phrase({ index, total, text, progress }: { index: number; total: number; text: string; progress: any }) {
+function Phrase({ index, total, text, progress }: { index: number; total: number; text: string; progress: MotionValue<number> }) {
   const isLast = index === total - 1;
   
   // Distribución: Primera 25%, Segunda 35%, Última 40%
@@ -694,8 +694,7 @@ export default function Home() {
     try {
       // Prevent browser from restoring previous scroll
       if (typeof history !== 'undefined' && 'scrollRestoration' in history) {
-        // @ts-ignore
-        history.scrollRestoration = 'manual';
+        (history as { scrollRestoration?: string }).scrollRestoration = 'manual';
       }
     } catch {}
     // Jump to top on mount
@@ -960,7 +959,7 @@ export default function Home() {
                       <div className="w-2 h-2 bg-blue-600 rounded-full"></div>
                       <div className="w-8 h-8 bg-green-100 rounded-full"></div>
                       <span className="text-sm text-gray-700">Drive</span>
-                      <span className="text-sm text-gray-500">Carpeta "Facturas 2025"</span>
+                      <span className="text-sm text-gray-500">Carpeta &quot;Facturas 2025&quot;</span>
                     </div>
                     <div className="flex items-center gap-3">
                       <div className="w-2 h-2 bg-gray-300 rounded-full"></div>
