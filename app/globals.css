@@ -1,0 +1,57 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #0a0a0a;
+  --accent: #6c5ce7; /* morado suave tipo Qonto */
+  --accent-foreground: #ffffff;
+  --brand: #0b1e34; /* azul marino del logotipo */
+}
+
+@keyframes marquee-left {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* Floating subtle animations for hero pills */
+@keyframes float-ud {
+  0% { transform: translateY(0) rotate(0deg) scale(1); }
+  50% { transform: translateY(-16px) rotate(-1deg) scale(1.02); }
+  100% { transform: translateY(0) rotate(0deg) scale(1); }
+}
+
+@keyframes float-lr {
+  0% { transform: translateX(0) rotate(0deg) scale(1); }
+  50% { transform: translateX(16px) rotate(1deg) scale(1.02); }
+  100% { transform: translateX(0) rotate(0deg) scale(1); }
+}
+
+.float-ud { animation: float-ud 5s ease-in-out infinite; }
+.float-ud-2 { animation: float-ud 6s ease-in-out infinite; animation-delay: .35s; }
+.float-lr { animation: float-lr 7s ease-in-out infinite; }
+
+.marquee {
+  position: relative;
+  overflow: hidden;
+}
+
+.marquee__track {
+  display: flex;
+  width: max-content;
+  animation: marquee-left 35s linear infinite;
+}
+
+.marquee__item {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-right: 80px;
+  opacity: 0.6;
+  transition: opacity 0.2s ease;
+}
+
+.marquee__item:hover { opacity: 1; }
+
+/* Spacer to avoid showing duplicates at once */
+.marquee__spacer { flex: 0 0 100vw; }
