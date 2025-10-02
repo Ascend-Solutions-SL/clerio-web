@@ -5,7 +5,6 @@ const nextConfig: NextConfig = {
   output: 'export',
   images: {
     unoptimized: true,
-    domains: ['vercel.com', 'www.vercel.com', 'ascendsolutions.es', 'app.ascendsolutions.es'],
   },
   eslint: {
     ignoreDuringBuilds: true,
@@ -13,8 +12,11 @@ const nextConfig: NextConfig = {
   typescript: {
     ignoreBuildErrors: true,
   },
-  basePath: process.env.NODE_ENV === 'production' ? '' : '',
-  assetPrefix: process.env.NODE_ENV === 'production' ? '' : '',
+  // Configuración para rutas estáticas
+  trailingSlash: true,
+  // Deshabilita el prefijo de ruta base en producción
+  basePath: '',
+  assetPrefix: '',
 };
 
 export default nextConfig;
