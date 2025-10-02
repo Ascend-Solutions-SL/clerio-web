@@ -1,0 +1,10 @@
+{
+  "name": "ascend-solutions-web",
+  "repository": "https://github.com/Ascend-Solutions-SL/clerio-web",
+  "buildCommand": "npm install && npm run build",
+  "outputDirectory": ".next",
+  "domains": ["ascendsolutions.es", "www.ascendsolutions.es"],
+  "environment": {
+    "NODE_ENV": "production"
+  }
+}
