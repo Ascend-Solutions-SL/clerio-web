@@ -2,19 +2,21 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
-  output: 'export',
+  // Vercel maneja automáticamente la exportación
+  output: 'standalone',
+  // Configuración de imágenes optimizadas para Vercel
   images: {
-    unoptimized: true,
+    domains: ['vercel.com', 'www.vercel.com', 'ascendsolutions.es', 'app.ascendsolutions.es'],
   },
+  // Configuración de ESLint y TypeScript
   eslint: {
     ignoreDuringBuilds: true,
   },
   typescript: {
     ignoreBuildErrors: true,
   },
-  // Configuración para rutas estáticas
-  trailingSlash: true,
-  // Deshabilita el prefijo de ruta base en producción
+  // Configuración de rutas
+  trailingSlash: false,
   basePath: '',
   assetPrefix: '',
 };
