@@ -1,10 +1,13 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  // Deshabilitar la exportación estática para Vercel
+  // Configuración para producción en Vercel
   output: 'standalone',
+  // Deshabilitar la exportación estática
+  distDir: '.next',
   // Configuración de imágenes
   images: {
+    unoptimized: true,
     domains: ['vercel.com', 'www.vercel.com', 'ascendsolutions.es', 'app.ascendsolutions.es'],
   },
   // Configuración de ESLint y TypeScript
@@ -16,6 +19,10 @@ const nextConfig = {
   },
   // Configuración de rutas
   trailingSlash: false,
+  // Deshabilitar el modo de desarrollo
+  env: {
+    NODE_ENV: 'production'
+  }
 };
 
 module.exports = nextConfig;
