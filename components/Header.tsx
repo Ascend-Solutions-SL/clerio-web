@@ -27,12 +27,12 @@ export default function Header() {
 
         {/* Right: Actions pinned */}
         <div className="shrink-0 flex items-center gap-3 md:gap-4 ml-auto">
-          <Link
-            href="/login"
+          <a
+            href="https://app.ascendsolutions.es/login"
             className="inline-flex items-center justify-center rounded-full border border-blue-600 text-blue-600 px-6 py-2.5 text-sm font-medium hover:bg-blue-50 transition"
           >
             Acceder
-          </Link>
+          </a>
           <Link
             href="#demo"
             className="inline-flex items-center justify-center rounded-full bg-blue-600 text-white px-6 py-2.5 text-sm font-medium hover:bg-blue-700 transition"
