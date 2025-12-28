@@ -22,9 +22,9 @@ export const metadata: Metadata = {
     "Software SaaS para gestorías: documentación automática, contabilidad inteligente con IA y modelos AEAT listos para presentar.",
   metadataBase: new URL("https://clerio.es"),
   icons: {
-    icon: [{ url: "/favicon.ico", type: "image/x-icon" }],
-    shortcut: [{ url: "/favicon.ico", type: "image/x-icon" }],
-    apple: [{ url: "/favicon.ico", type: "image/x-icon" }],
+    icon: [{ url: "/favicon.ico?v=2", type: "image/x-icon" }],
+    shortcut: [{ url: "/favicon.ico?v=2", type: "image/x-icon" }],
+    apple: [{ url: "/favicon.ico?v=2", type: "image/x-icon" }],
   },
 };
 
