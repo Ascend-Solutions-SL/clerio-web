@@ -1,5 +1,6 @@
 "use client";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function Header() {
 
@@ -9,7 +10,7 @@ export default function Header() {
         {/* Left: Logo */}
         <div className="shrink-0">
           <Link href="/" className="flex items-center gap-2">
-            <span className="text-2xl md:text-3xl font-extrabold tracking-tight text-gray-900">Clerio</span>
+            <Image src="/brand/main_logo.png" alt="Clerio" width={120} height={32} className="h-7 md:h-8 w-auto" priority />
           </Link>
         </div>
 

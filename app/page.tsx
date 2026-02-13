@@ -741,28 +741,28 @@ export default function Home() {
               {/* Floating benefit pills */}
               <div aria-hidden className="pointer-events-none absolute inset-0 z-10">
                 {/* Left pill near heading (now Exportar) */}
-                <div className="hidden md:flex items-center gap-2 bg-white rounded-full shadow-lg px-4 py-2 text-sm text-gray-900 absolute -left-12 lg:-left-24 top-20 lg:top-24 float-ud transform-gpu">
+                <div className="hidden md:flex items-center gap-2 bg-white rounded-full shadow-lg px-4 py-2 text-sm text-gray-900 absolute -left-4 lg:-left-10 top-20 lg:top-24 float-ud transform-gpu">
                   <span className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-gray-100 text-gray-700">
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5"/><path d="M12 15V3"/></svg>
                   </span>
                   <span>Exportar ZIP+CSV</span>
                 </div>
                 {/* Right pill near heading (moved down for spacing) */}
-                <div className="hidden md:flex items-center gap-2 bg-white rounded-full shadow-lg px-4 py-2 text-sm text-gray-900 absolute -right-12 lg:-right-24 top-40 lg:top-48 float-ud-2 transform-gpu">
+                <div className="hidden md:flex items-center gap-2 bg-white rounded-full shadow-lg px-4 py-2 text-sm text-gray-900 absolute -right-4 lg:-right-10 top-40 lg:top-48 float-ud-2 transform-gpu">
                   <span className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-green-100 text-green-600">
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
                   </span>
                   <span>Acceso para la asesoría</span>
                 </div>
                 {/* Right upper pill */}
-                <div className="hidden md:flex items-center gap-2 bg-white rounded-full shadow-lg px-4 py-2 text-sm text-gray-900 absolute -right-16 lg:-right-28 top-14 lg:top-16 float-lr transform-gpu">
+                <div className="hidden md:flex items-center gap-2 bg-white rounded-full shadow-lg px-4 py-2 text-sm text-gray-900 absolute -right-6 lg:-right-14 top-14 lg:top-16 float-lr transform-gpu">
                   <span className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-amber-100 text-amber-600">
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2v4"/><path d="M12 18v4"/><path d="m4.93 4.93 2.83 2.83"/><path d="m16.24 16.24 2.83 2.83"/><path d="M2 12h4"/><path d="M18 12h4"/><path d="m4.93 19.07 2.83-2.83"/><path d="m16.24 7.76 2.83-2.83"/></svg>
                   </span>
                   <span>Duplicado detectado</span>
                 </div>
                 {/* Left pill aligned with buttons (now Factura clasificada) */}
-                <div className="hidden md:flex items-center gap-2 bg-white rounded-full shadow-lg px-4 py-2 text-sm text-gray-900 absolute -left-12 lg:-left-24 top-52 lg:top-60 float-ud transform-gpu">
+                <div className="hidden md:flex items-center gap-2 bg-white rounded-full shadow-lg px-4 py-2 text-sm text-gray-900 absolute -left-4 lg:-left-10 top-52 lg:top-60 float-ud transform-gpu">
                   <span className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-blue-100 text-blue-600">
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
                   </span>
