@@ -40,7 +40,7 @@ export default function FeatureShowcaseSection() {
   return (
     <section className="px-4 pt-4 pb-8 sm:px-6 sm:pt-5 sm:pb-12">
       <div className="mx-auto grid w-full max-w-[1260px] gap-14 sm:gap-9 lg:grid-cols-[minmax(0,1fr)_400px] lg:gap-7 lg:items-stretch xl:grid-cols-[minmax(0,1fr)_430px]">
-        <div className="mx-auto flex w-[calc(100%-6px)] min-h-[360px] flex-col rounded-[34px] bg-[linear-gradient(140deg,#7bb8ff_0%,#9ac7f0_46%,#b7b8ea_100%)] px-4 py-6 sm:w-full sm:min-h-[400px] sm:px-7 sm:py-7">
+        <div className="mx-auto flex min-h-[360px] min-w-0 w-full flex-col rounded-[34px] bg-[linear-gradient(140deg,#7bb8ff_0%,#9ac7f0_46%,#b7b8ea_100%)] px-4 py-6 sm:min-h-[400px] sm:px-7 sm:py-7">
           <div className="mx-auto flex w-fit flex-nowrap items-center justify-center gap-1.5 rounded-xl bg-white/8 p-1 backdrop-blur-[2px]">
             {tabs.map((tab) => {
               const isActive = tab.id === activeTab;
@@ -73,7 +73,7 @@ export default function FeatureShowcaseSection() {
           </div>
         </div>
 
-        <aside className="mx-auto w-[calc(100%-6px)] rounded-[30px] border-2 border-[#d8deec] bg-[linear-gradient(180deg,#ffffff_0%,#f5f6fa_100%)] px-4 pb-6 pt-5 shadow-[0_22px_44px_rgba(15,24,40,0.11)] ring-1 ring-white/90 sm:w-full sm:px-5 sm:pb-7 sm:pt-6">
+        <aside className="mx-auto min-w-0 w-full rounded-[30px] border-2 border-[#d8deec] bg-[linear-gradient(180deg,#ffffff_0%,#f5f6fa_100%)] px-4 pb-6 pt-5 shadow-[0_22px_44px_rgba(15,24,40,0.11)] ring-1 ring-white/90 sm:px-5 sm:pb-7 sm:pt-6">
           <div className="mx-auto w-fit">
             <div className="relative rounded-full px-4 py-2.5">
               <div className="absolute inset-0 rounded-full bg-[#86acff]/24 blur-[20px]" />
@@ -111,43 +111,43 @@ export default function FeatureShowcaseSection() {
             <AssistantMessage>Aquí tienes las 3 facturas con mayor importe del mes anterior.</AssistantMessage>
 
             <div className="ml-7 overflow-hidden rounded-[12px] border border-[#d7dde8] bg-white shadow-[0_3px_12px_rgba(15,23,42,0.06)]">
-              <table className="w-full border-collapse text-[10px] text-[#3e4758] sm:text-[10.5px]">
+              <table className="w-full table-fixed border-collapse text-[9.5px] text-[#3e4758] sm:text-[10.5px]">
                 <thead className="bg-[#f5f7fa] text-[#5a6475]">
                   <tr>
-                    <th className="px-2 py-1.5 text-left font-semibold">Número</th>
-                    <th className="px-2 py-1.5 text-left font-semibold">Fecha</th>
-                    <th className="px-2 py-1.5 text-left font-semibold">Tipo</th>
-                    <th className="px-2 py-1.5 text-left font-semibold">Contraparte</th>
-                    <th className="px-2 py-1.5 text-right font-semibold">Importe</th>
+                    <th className="hidden px-2 py-1.5 text-left font-semibold sm:table-cell">Número</th>
+                    <th className="w-[24%] px-1.5 py-1.5 text-left font-semibold sm:w-[20%] sm:px-2">Fecha</th>
+                    <th className="w-[24%] px-1.5 py-1.5 text-left font-semibold sm:w-[20%] sm:px-2">Tipo</th>
+                    <th className="w-[30%] px-1.5 py-1.5 text-left font-semibold sm:w-[34%] sm:px-2">Contraparte</th>
+                    <th className="w-[22%] px-1.5 py-1.5 text-right font-semibold sm:w-[18%] sm:px-2">Importe</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr className="border-t border-[#edf1f6]">
-                    <td className="px-2 py-1.5">F6026</td>
-                    <td className="px-2 py-1.5">27/03/26</td>
-                    <td className="px-2 py-1.5">
+                    <td className="hidden px-2 py-1.5 sm:table-cell">F6026</td>
+                    <td className="px-1.5 py-1.5 whitespace-nowrap sm:px-2">27/03/26</td>
+                    <td className="px-1.5 py-1.5 sm:px-2">
                       <span className="rounded-full bg-[#def7ea] px-1.5 py-0.5 text-[10px] text-[#18794e]">Ingresos</span>
                     </td>
-                    <td className="px-2 py-1.5">Refri SL</td>
-                    <td className="px-2 py-1.5 text-right">748,84 €</td>
+                    <td className="px-1.5 py-1.5 truncate sm:px-2">Refri SL</td>
+                    <td className="px-1.5 py-1.5 text-right sm:px-2">748,84 €</td>
                   </tr>
                   <tr className="border-t border-[#edf1f6]">
-                    <td className="px-2 py-1.5">F6025</td>
-                    <td className="px-2 py-1.5">24/03/26</td>
-                    <td className="px-2 py-1.5">
+                    <td className="hidden px-2 py-1.5 sm:table-cell">F6025</td>
+                    <td className="px-1.5 py-1.5 whitespace-nowrap sm:px-2">24/03/26</td>
+                    <td className="px-1.5 py-1.5 sm:px-2">
                       <span className="rounded-full bg-[#def7ea] px-1.5 py-0.5 text-[10px] text-[#18794e]">Ingresos</span>
                     </td>
-                    <td className="px-2 py-1.5">Sevifer SA</td>
-                    <td className="px-2 py-1.5 text-right">593,72 €</td>
+                    <td className="px-1.5 py-1.5 truncate sm:px-2">Sevifer SA</td>
+                    <td className="px-1.5 py-1.5 text-right sm:px-2">593,72 €</td>
                   </tr>
                   <tr className="border-t border-[#edf1f6]">
-                    <td className="px-2 py-1.5">F6023</td>
-                    <td className="px-2 py-1.5">21/03/26</td>
-                    <td className="px-2 py-1.5">
+                    <td className="hidden px-2 py-1.5 sm:table-cell">F6023</td>
+                    <td className="px-1.5 py-1.5 whitespace-nowrap sm:px-2">21/03/26</td>
+                    <td className="px-1.5 py-1.5 sm:px-2">
                       <span className="rounded-full bg-[#def7ea] px-1.5 py-0.5 text-[10px] text-[#18794e]">Ingresos</span>
                     </td>
-                    <td className="px-2 py-1.5">Moviserca</td>
-                    <td className="px-2 py-1.5 text-right">512,48 €</td>
+                    <td className="px-1.5 py-1.5 truncate sm:px-2">Moviserca</td>
+                    <td className="px-1.5 py-1.5 text-right sm:px-2">512,48 €</td>
                   </tr>
                 </tbody>
               </table>
