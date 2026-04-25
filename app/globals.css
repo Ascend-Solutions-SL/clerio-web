@@ -1,57 +1,105 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #0a0a0a;
-  --accent: #6c5ce7; /* morado suave tipo Qonto */
-  --accent-foreground: #ffffff;
-  --brand: #0b1e34; /* azul marino del logotipo */
+  --color-accent: #6c5ce7;
+  --color-brand: #0b1e34;
 }
 
-@keyframes marquee-left {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
+html,
+body {
+  max-width: 100%;
+  overflow-x: hidden;
 }
 
-/* Floating subtle animations for hero pills */
-@keyframes float-ud {
-  0% { transform: translateY(0) rotate(0deg) scale(1); }
-  50% { transform: translateY(-16px) rotate(-1deg) scale(1.02); }
-  100% { transform: translateY(0) rotate(0deg) scale(1); }
+html {
+  scrollbar-gutter: stable;
 }
 
-@keyframes float-lr {
-  0% { transform: translateX(0) rotate(0deg) scale(1); }
-  50% { transform: translateX(16px) rotate(1deg) scale(1.02); }
-  100% { transform: translateX(0) rotate(0deg) scale(1); }
+@keyframes logo-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
 }
 
-.float-ud { animation: float-ud 5s ease-in-out infinite; }
-.float-ud-2 { animation: float-ud 6s ease-in-out infinite; animation-delay: .35s; }
-.float-lr { animation: float-lr 7s ease-in-out infinite; }
-
-.marquee {
-  position: relative;
-  overflow: hidden;
+@keyframes statement-rise {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+    filter: blur(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
 }
 
-.marquee__track {
+.logo-marquee-track {
   display: flex;
   width: max-content;
-  animation: marquee-left 35s linear infinite;
+  animation: logo-marquee 21s linear infinite;
+  will-change: transform;
 }
 
-.marquee__item {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  margin-right: 80px;
-  opacity: 0.6;
-  transition: opacity 0.2s ease;
+.logo-runway {
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    rgba(0, 0, 0, 0.26) 6%,
+    rgba(0, 0, 0, 0.65) 11%,
+    black 17%,
+    black 83%,
+    rgba(0, 0, 0, 0.65) 89%,
+    rgba(0, 0, 0, 0.26) 94%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    rgba(0, 0, 0, 0.26) 6%,
+    rgba(0, 0, 0, 0.65) 11%,
+    black 17%,
+    black 83%,
+    rgba(0, 0, 0, 0.65) 89%,
+    rgba(0, 0, 0, 0.26) 94%,
+    transparent 100%
+  );
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
 }
 
-.marquee__item:hover { opacity: 1; }
+.logo-fade-left,
+.logo-fade-right {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  z-index: 2;
+  width: 120px;
+  pointer-events: none;
+}
 
-/* Spacer to avoid showing duplicates at once */
-.marquee__spacer { flex: 0 0 100vw; }
+.logo-fade-left {
+  left: 0;
+  background: linear-gradient(90deg, rgba(247, 247, 248, 0.96) 0%, rgba(255, 255, 255, 0.88) 44%, rgba(255, 255, 255, 0) 100%);
+}
+
+.logo-fade-right {
+  right: 0;
+  background: linear-gradient(270deg, rgba(247, 247, 248, 0.96) 0%, rgba(255, 255, 255, 0.88) 44%, rgba(255, 255, 255, 0) 100%);
+}
+
+.statement-reveal {
+  animation: statement-rise 850ms cubic-bezier(0.2, 0.68, 0.18, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .logo-marquee-track,
+  .statement-reveal {
+    animation: none;
+  }
+}

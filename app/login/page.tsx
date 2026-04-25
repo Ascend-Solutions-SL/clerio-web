@@ -1,22 +1,10 @@
-"use client";
-import { motion } from "framer-motion";
 import Link from "next/link";
 
 export default function Login() {
-  const handleGoogleLogin = () => {
-    // Aquí se implementará la lógica de Google OAuth
-    console.log("Iniciando sesión con Google...");
-  };
-
   return (
     <main className="min-h-screen bg-gradient-to-b from-white to-neutral-50 flex items-center justify-center px-6">
       <div className="w-full max-w-md">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-8"
-        >
+        <div className="text-center mb-8">
           <Link href="/" className="inline-block mb-6">
             <span className="text-3xl font-bold text-[--color-brand]">Clerio</span>
           </Link>
@@ -26,17 +14,11 @@ export default function Login() {
           <p className="mt-2 text-neutral-600">
             Inicia sesión para gestionar tu cuenta demo
           </p>
-        </motion.div>
+        </div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.1 }}
-          className="bg-white rounded-2xl border border-neutral-200 p-8 shadow-lg"
-        >
-          {/* Google Login Button */}
+        <div className="bg-white rounded-2xl border border-neutral-200 p-8 shadow-lg">
           <button
-            onClick={handleGoogleLogin}
+            type="button"
             className="w-full flex items-center justify-center gap-3 py-3 px-4 border border-neutral-300 rounded-xl hover:bg-neutral-50 transition-colors mb-6"
           >
             <svg className="w-5 h-5" viewBox="0 0 24 24">
@@ -113,21 +95,16 @@ export default function Login() {
               Iniciar sesión
             </button>
           </form>
-        </motion.div>
+        </div>
 
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="mt-6 text-center"
-        >
+        <div className="mt-6 text-center">
           <p className="text-sm text-neutral-600">
             ¿No tienes cuenta demo?{" "}
-            <Link href="/#demo" className="font-medium text-[--color-accent] hover:brightness-95">
-              Solicita acceso
+            <Link href="/" className="font-medium text-[--color-accent] hover:brightness-95">
+              Volver al inicio
             </Link>
           </p>
-        </motion.div>
+        </div>
       </div>
     </main>
   );
