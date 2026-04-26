@@ -434,7 +434,7 @@ export default function ScrollStepsSection() {
     return (
       <section ref={sectionRef} className="px-4 pt-8 pb-8 sm:px-6 sm:pt-12 sm:pb-12">
         <div
-          className={`mx-auto flex max-w-6xl flex-col gap-3 transition-all duration-[950ms] [transition-timing-function:cubic-bezier(0.2,0.75,0.2,1)] ${
+          className={`container-page flex flex-col gap-3 transition-all duration-[950ms] [transition-timing-function:cubic-bezier(0.2,0.75,0.2,1)] ${
             hasEntered ? "translate-y-0 opacity-100 blur-0" : "translate-y-8 opacity-0 blur-[6px]"
           }`}
         >
@@ -468,7 +468,7 @@ export default function ScrollStepsSection() {
     <section ref={sectionRef} className="px-4 pt-8 pb-8 sm:px-6 sm:pt-12 sm:pb-12">
       <div
         ref={contentRef}
-        className={`mx-auto grid max-w-6xl items-center gap-12 transition-all duration-[950ms] [transition-timing-function:cubic-bezier(0.2,0.75,0.2,1)] md:gap-16 lg:grid-cols-[minmax(0,1fr)_41%] lg:gap-[84px] ${
+        className={`container-page grid items-center gap-12 transition-all duration-[950ms] [transition-timing-function:cubic-bezier(0.2,0.75,0.2,1)] md:gap-16 lg:grid-cols-[minmax(0,1fr)_41%] lg:gap-[84px] ${
           hasEntered ? "translate-y-0 opacity-100 blur-0" : "translate-y-8 opacity-0 blur-[6px]"
         }`}
       >

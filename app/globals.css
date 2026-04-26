@@ -5,6 +5,29 @@
   --color-brand: #0b1e34;
 }
 
+@layer utilities {
+  .container-page {
+    width: 100%;
+    max-width: clamp(0px, 92vw, 1600px);
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .container-page-narrow {
+    width: 100%;
+    max-width: clamp(0px, 80vw, 1280px);
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .container-page-header {
+    width: 100%;
+    max-width: clamp(0px, 96vw, 1840px);
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
 html,
 body {
   max-width: 100%;

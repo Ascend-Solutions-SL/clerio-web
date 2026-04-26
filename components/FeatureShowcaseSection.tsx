@@ -39,7 +39,7 @@ export default function FeatureShowcaseSection() {
 
   return (
     <section className="px-4 pt-4 pb-8 sm:px-6 sm:pt-5 sm:pb-12">
-      <div className="mx-auto grid w-full max-w-[1260px] gap-14 sm:gap-9 lg:grid-cols-[minmax(0,1fr)_400px] lg:gap-7 lg:items-stretch xl:grid-cols-[minmax(0,1fr)_430px]">
+      <div className="container-page grid gap-14 sm:gap-9 lg:grid-cols-[minmax(0,1fr)_400px] lg:gap-7 lg:items-stretch xl:grid-cols-[minmax(0,1fr)_430px]">
         <div className="mx-auto flex min-h-[360px] min-w-0 w-full flex-col rounded-[34px] bg-[linear-gradient(140deg,#7bb8ff_0%,#9ac7f0_46%,#b7b8ea_100%)] px-4 py-6 sm:min-h-[400px] sm:px-7 sm:py-7">
           <div className="mx-auto flex w-fit flex-nowrap items-center justify-center gap-1.5 rounded-xl bg-white/8 p-1 backdrop-blur-[2px]">
             {tabs.map((tab) => {

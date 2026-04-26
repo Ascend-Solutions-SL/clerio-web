@@ -28,7 +28,7 @@ export default function PremiumStatementSection() {
 
   return (
     <section ref={sectionRef} className="px-4 pt-8 pb-6 sm:px-6 sm:pt-9 sm:pb-8">
-      <div className="relative mx-auto max-w-6xl py-4 sm:py-6">
+      <div className="container-page relative py-4 sm:py-6">
         <div
           className={`pointer-events-none absolute left-1/2 top-1/2 h-24 w-[70%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle,rgba(153,179,230,0.26)_0%,rgba(153,179,230,0)_74%)] blur-[30px] transition-all duration-900 ease-out sm:h-32 ${
             isVisible ? "opacity-100" : "opacity-0"

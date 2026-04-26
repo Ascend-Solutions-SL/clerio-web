@@ -53,7 +53,7 @@ export default function Home() {
   return (
     <main className="font-sans bg-[#f7f7f8] min-h-screen">
       <section className="pt-36 sm:pt-40 md:pt-44 pb-10 sm:pb-12 px-4 sm:px-6">
-        <div className="mx-auto max-w-5xl text-center">
+        <div className="container-page-narrow text-center">
           <h1 className="text-[36px] sm:text-[44px] md:text-[52px] leading-[1.08] font-semibold tracking-[-0.03em] text-[#0d1117]">
             <span className="block">Deja de perder tiempo</span>
             <span className="block">persiguiendo tus facturas</span>
@@ -93,7 +93,7 @@ export default function Home() {
       <SavingsEstimatorSection />
 
       <section className="pt-8 pb-20 sm:pt-12 sm:pb-24 px-4 sm:px-6">
-        <div className="mx-auto max-w-5xl">
+        <div className="container-page-narrow">
           <div className="text-center mb-10">
             <div className="inline-flex rounded-full bg-gray-100 px-3 py-1 text-xs text-gray-600 mb-3">FAQ</div>
             <h3 className="text-3xl sm:text-4xl font-bold text-gray-900">Preguntas frecuentes</h3>

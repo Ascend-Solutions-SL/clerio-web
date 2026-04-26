@@ -71,7 +71,7 @@ export default function PricingSection() {
   return (
     <section ref={sectionRef} className="px-4 pt-4 pb-8 sm:px-6 sm:pt-4 sm:pb-12">
       <div
-        className={`mx-auto max-w-6xl transition-all duration-[950ms] [transition-timing-function:cubic-bezier(0.2,0.75,0.2,1)] ${
+        className={`container-page transition-all duration-[950ms] [transition-timing-function:cubic-bezier(0.2,0.75,0.2,1)] ${
           isVisible ? "translate-y-0 opacity-100 blur-0" : "translate-y-8 opacity-0 blur-[6px]"
         }`}
       >

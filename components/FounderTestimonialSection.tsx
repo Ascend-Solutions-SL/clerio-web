@@ -30,7 +30,7 @@ export default function FounderTestimonialSection() {
   return (
     <section ref={sectionRef} className="px-4 pt-7 pb-8 sm:px-6 sm:pt-9 sm:pb-9">
       <div
-        className={`mx-auto grid max-w-6xl gap-3 transition-all duration-[950ms] [transition-timing-function:cubic-bezier(0.2,0.75,0.2,1)] lg:grid-cols-[1.05fr_1fr] ${
+        className={`container-page grid gap-3 transition-all duration-[950ms] [transition-timing-function:cubic-bezier(0.2,0.75,0.2,1)] lg:grid-cols-[1.05fr_1fr] ${
           isVisible ? "translate-y-0 opacity-100 blur-0" : "translate-y-8 opacity-0 blur-[6px]"
         }`}
       >

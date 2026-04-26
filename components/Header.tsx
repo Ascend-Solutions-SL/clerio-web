@@ -8,7 +8,7 @@ export default function Header() {
 
   return (
     <header className="fixed inset-x-0 top-0 z-50 bg-[#f7f7f8]">
-      <div className="mx-auto max-w-[1260px] px-4 sm:px-6 pt-2">
+      <div className="container-page-header px-4 sm:px-6 lg:px-8 pt-2">
         <div className="h-6 rounded-full bg-[#c7dcf7] text-[11px] sm:text-[12px] text-[#3a4b63] flex items-center justify-center relative px-8 text-center">
           <span>
             Consigue 2 meses gratis con tu plan <span className="font-semibold italic">anual</span>
@@ -17,7 +17,7 @@ export default function Header() {
         </div>
       </div>
 
-      <div className="mx-auto max-w-[1260px] px-4 sm:px-6 h-14 sm:h-16 flex items-center relative">
+      <div className="container-page-header px-4 sm:px-6 lg:px-8 h-14 sm:h-16 flex items-center relative">
         <div className="shrink-0 mr-3">
           <img src="/logos/logo_clerio.png" alt="Clerio" className="h-8 w-auto" />
         </div>

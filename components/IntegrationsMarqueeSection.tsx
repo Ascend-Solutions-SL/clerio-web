@@ -17,7 +17,7 @@ export default function IntegrationsMarqueeSection() {
 
   return (
     <section className="px-4 pt-8 pb-6 sm:px-6 sm:pt-12 sm:pb-8">
-      <div className="mx-auto max-w-6xl">
+      <div className="container-page">
         <p className="text-center text-[26px] font-semibold tracking-[-0.025em] text-[#192131] sm:text-[34px]">
           Softwares integrados con Clerio
         </p>
