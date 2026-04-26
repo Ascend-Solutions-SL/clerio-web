@@ -11,8 +11,8 @@ import ScrollStepsSection from "@/components/ScrollStepsSection";
 export default function Home() {
   const faqItems = [
     {
-      q: "¿Necesito cambiar de software contable para usar Clerio?",
-      a: "No, Clerio no sustituye tu software contable.\n\nClerio se encarga de recoger, organizar y estructurar todas tus facturas (correo, portales, archivos, etc.) y dejarlas listas para importarlas en tu sistema actual (A3, SAGE, Contasol, Holded, etc.).\n\nEn la práctica: mantienes tus herramientas, pero eliminas el caos previo.",
+      q: "¿Cómo ayuda Clerio a mi empresa?",
+      a: "Clerio elimina el trabajo manual de gestión y organización de facturas dentro de tu empresa. Tu equipo ya no tiene que:\n\n- Perseguir facturas\n- Descargarlas manualmente\n- Clasificarlas una a una\n\nEl resultado:\n\n- Menos tiempo operativo\n- Menos errores\n- Procesos más rápidos y controlados",
     },
     {
       q: "¿Qué integraciones soporta Clerio?",
@@ -23,8 +23,8 @@ export default function Home() {
       a: "¡Es exactamente el problema que Clerio resuelve!\n\nClerio recoge automáticamente facturas desde múltiples fuentes, las centraliza y las organiza en un único lugar.\n\nDejas de:\n\n- Buscar facturas en 5 sitios distintos\n- Pedir documentos a proveedores\n- Reenviar emails constantemente\n\nTodo queda ordenado y accesible en segundos.",
     },
     {
-      q: "¿Cómo ayuda Clerio a mi empresa?",
-      a: "Clerio elimina el trabajo manual de gestión y organización de facturas dentro de tu empresa. Tu equipo ya no tiene que:\n\n- Perseguir facturas\n- Descargarlas manualmente\n- Clasificarlas una a una\n\nEl resultado:\n\n- Menos tiempo operativo\n- Menos errores\n- Procesos más rápidos y controlados",
+      q: "¿Necesito cambiar de software contable para usar Clerio?",
+      a: "No, Clerio no sustituye tu software contable.\n\nClerio se encarga de recoger, organizar y estructurar todas tus facturas (correo, portales, archivos, etc.) y dejarlas listas para importarlas en tu sistema actual (A3, SAGE, Contasol, Holded, etc.).\n\nEn la práctica: mantienes tus herramientas, pero eliminas el caos previo.",
     },
     {
       q: "¿Es seguro subir mis facturas a Clerio?",
