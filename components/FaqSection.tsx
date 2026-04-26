@@ -4,6 +4,29 @@ import { useEffect, useRef, useState } from "react";
 
 type FaqItem = { q: string; a: string };
 
+function renderAnswer(answer: string) {
+  return answer.split(/\n\s*\n/).map((block, index) => {
+    const lines = block.split("\n").filter((line) => line.trim().length > 0);
+    const isList = lines.length > 0 && lines.every((line) => line.trim().startsWith("- "));
+
+    if (isList) {
+      return (
+        <ul key={index} className="mt-3 list-disc space-y-1 pl-5 text-[13px] leading-[1.55] text-[#4a5565] sm:text-[14px]">
+          {lines.map((line) => (
+            <li key={line}>{line.trim().slice(2)}</li>
+          ))}
+        </ul>
+      );
+    }
+
+    return (
+      <p key={index} className="mt-3 whitespace-pre-line text-[13px] leading-[1.55] text-[#4a5565] sm:text-[14px]">
+        {block}
+      </p>
+    );
+  });
+}
+
 export default function FaqSection({ items }: { items: FaqItem[] }) {
   const sectionRef = useRef<HTMLElement | null>(null);
   const hasRevealedRef = useRef(false);
@@ -30,19 +53,19 @@ export default function FaqSection({ items }: { items: FaqItem[] }) {
   }, []);
 
   return (
-    <section ref={sectionRef} className="px-4 pt-10 pb-4 sm:px-6 sm:pt-14 sm:pb-4">
+    <section ref={sectionRef} className="overflow-visible px-4 pt-10 pb-4 sm:px-6 sm:pt-14 sm:pb-4">
       <div
         className={`container-page grid gap-10 transition-all duration-[950ms] [transition-timing-function:cubic-bezier(0.2,0.75,0.2,1)] lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] lg:gap-16 ${
           isVisible ? "translate-y-0 opacity-100 blur-0" : "translate-y-8 opacity-0 blur-[6px]"
         }`}
       >
-        <div className="lg:pt-1">
-          <div className="inline-flex items-center rounded-[8px] border border-[#bcc4d1] px-3 py-1 text-[13px] font-medium text-[#3d4655]">
+        <div className="relative lg:pt-0">
+          <div className="inline-flex items-center rounded-[8px] border border-[#bcc4d1] px-3 py-1 text-[13px] font-medium text-[#3d4655] lg:absolute lg:left-0 lg:top-[-48px]">
             <span className="mr-2 h-1.5 w-1.5 rounded-full bg-[#4e8fff]" />
             Preguntas Frecuentes
           </div>
 
-          <h2 className="mt-4 text-[34px] font-medium leading-[1.08] tracking-[-0.03em] text-[#101828] sm:text-[44px]">
+          <h2 className="mt-4 text-[34px] font-medium leading-[1.08] tracking-[-0.03em] text-[#101828] sm:text-[44px] lg:mt-0">
             ¿Tienes preguntas?
             <span className="block text-[#6a7383]">Nos alegra que preguntes.</span>
           </h2>
@@ -86,14 +109,12 @@ export default function FaqSection({ items }: { items: FaqItem[] }) {
                   openIndex === index ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
                 }`}
               >
-                <div className="overflow-hidden">
-                  <p
-                    className={`mt-3 whitespace-pre-line text-[13px] leading-[1.55] text-[#4a5565] transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] sm:text-[14px] ${
-                      openIndex === index ? "translate-y-0 opacity-100" : "-translate-y-1 opacity-0"
-                    }`}
-                  >
-                    {item.a}
-                  </p>
+                <div
+                  className={`overflow-hidden transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+                    openIndex === index ? "translate-y-0 opacity-100" : "-translate-y-1 opacity-0"
+                  }`}
+                >
+                  <div>{renderAnswer(item.a)}</div>
                 </div>
               </div>
             </div>

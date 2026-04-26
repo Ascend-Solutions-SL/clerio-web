@@ -16,35 +16,31 @@ export default function Home() {
     },
     {
       q: "¿Qué integraciones soporta Clerio?",
-      a: "Clerio se conecta con los principales servicios de correo (Gmail, Outlook), plataformas de almacenamiento (Google Drive, Dropbox), y software de facturación/ERP como Holded. También soporta exportación de informes en formatos compatibles con programas contables.",
+      a: "Clerio se conecta con los principales servicios de correo (Gmail, Outlook), plataformas de almacenamiento (Google Drive, Onedrive, Dropbox), y softwares de facturación/ERP como Holded o Sage.\n\nTratamos deintegrarnos con tantos software como sea posible así que, si utilizas uno que no soportemos, solo tienes que pedirlo.",
     },
     {
       q: "¿Qué pasa si tengo facturas en distintos lugares (correo, portales, WhatsApp, Drive)?",
-      a: "Precisamente ahí está el valor de Clerio: centraliza automáticamente facturas de diferentes fuentes, las organiza y las pone a disposición de tu asesoría sin que tengas que reenviar documentos ni perder tiempo buscándolos.",
+      a: "¡Es exactamente el problema que Clerio resuelve!\n\nClerio recoge automáticamente facturas desde múltiples fuentes, las centraliza y las organiza en un único lugar.\n\nDejas de:\n\n- Buscar facturas en 5 sitios distintos\n- Pedir documentos a proveedores\n- Reenviar emails constantemente\n\nTodo queda ordenado y accesible en segundos.",
     },
     {
-      q: "¿Cómo ayuda Clerio a mi asesoría?",
-      a: "Tu asesoría recibe las facturas ya organizadas por fecha, cliente y categoría. Así evita perder tiempo clasificando documentos, conciliando pagos o persiguiendo información. Esto significa cierres más rápidos y menos errores en la contabilidad.",
+      q: "¿Cómo ayuda Clerio a mi empresa?",
+      a: "Clerio elimina el trabajo manual de gestión y organización de facturas dentro de tu empresa. Tu equipo ya no tiene que:\n\n- Perseguir facturas\n- Descargarlas manualmente\n- Clasificarlas una a una\n\nEl resultado:\n\n- Menos tiempo operativo\n- Menos errores\n- Procesos más rápidos y controlados",
     },
     {
       q: "¿Es seguro subir mis facturas a Clerio?",
-      a: "Sí. Clerio utiliza cifrado de extremo a extremo y almacenamiento seguro en la nube. Además, cada empresa y asesoría tiene accesos separados y controlados para garantizar la privacidad de la información.",
+      a: "Sí. Clerio utiliza cifrado y almacenamiento seguro en la nube para proteger toda la información. Además, cada empresa y usuario tiene accesos separados y controlados para garantizar la privacidad de la información.",
     },
     {
       q: "¿Qué ocurre si supero el límite de facturas de mi plan?",
-      a: "Si tu volumen de facturación crece y superas el límite de tu plan, Clerio te notificará y podrás actualizar al plan inmediatamente superior. El cambio es automático y no pierdes ningún documento.",
+      a: "Si tu volumen de facturación crece y superas el límite de tu plan, Clerio te notificará y podrás actualizar al plan inmediatamente superior o añadir paquetes extra (add-on) de facturas. En ningún momento pierdes acceso a tus facturas.",
     },
     {
       q: "¿Cuánto tiempo ahorro usando Clerio?",
-      a: "De media, las empresas reducen hasta un 85% del tiempo dedicado a organizar facturas y las asesorías hacen los cierres mensuales hasta 5 veces más rápido. Esto significa más foco en el negocio y menos tareas manuales.",
-    },
-    {
-      q: "¿Puedo usar Clerio con varios usuarios dentro de mi empresa?",
-      a: "Cada plan incluye un número de usuarios determinado. Puedes asignarlos a tu equipo, añadir asientos extra o subir de plan cuando lo necesites. Los asientos se pueden reasignar sin perder información.",
+      a: "Las empresas reducen hasta un 95% del tiempo dedicado a gestionar facturas. Tareas que antes llevaban horas (buscar, descargar, clasificar, enviar) pasan a ser automáticas.\n\nResultado: más tiempo en el negocio, menos trabajo manual. Esto significa más foco en el negocio y menos tareas manuales.",
     },
     {
       q: "¿Qué pasa si decido dejar de usar Clerio?",
-      a: "Tus documentos siempre son tuyos. Puedes descargar todas tus facturas en ZIP o CSV antes de cancelar la suscripción. Clerio garantiza que nunca perderás acceso a tu información.",
+      a: "Tus documentos siempre son tuyos. Dado que organizamos las facturas en tu propio almacenamiento en la nube (Google Drive, OneDrive, Dropbox...), tus facturas siempre están en tu posesión, con la misma organización que hizo Clerio.",
     },
   ];
 
