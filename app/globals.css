@@ -120,6 +120,10 @@ html {
   animation: statement-rise 850ms cubic-bezier(0.2, 0.68, 0.18, 1) both;
 }
 
+.pin-settle-animation {
+  /* No animation - clean pin */
+}
+
 .estimator-slider {
   appearance: none;
   -webkit-appearance: none;

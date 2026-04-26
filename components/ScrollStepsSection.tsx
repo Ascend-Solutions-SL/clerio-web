@@ -51,7 +51,11 @@ const steps: Step[] = [
 ];
 
 const STEP_SCROLL_COOLDOWN_MS = 240;
-const PIN_CAPTURE_TOLERANCE_PX = 36;
+const PIN_CAPTURE_TOLERANCE_PX = 24;
+const PIN_MAGNET_ZONE_PX = 220;
+const PIN_SETTLE_MS = 100;
+const PIN_ANCHOR_RATIO = 0.62;
+const MAGNET_DURATION_MS = 480;
 const GESTURE_DELTA_THRESHOLD_PX = 4;
 const TOUCH_DELTA_THRESHOLD_PX = 8;
 const WHEEL_GESTURE_IDLE_MS = 45;
@@ -66,9 +70,7 @@ type BodyLockStyles = {
   top: string;
   left: string;
   right: string;
-  width: string;
   overflowY: string;
-  paddingRight: string;
   touchAction: string;
   overscrollBehavior: string;
   htmlOverscrollBehavior: string;
@@ -92,9 +94,13 @@ export default function ScrollStepsSection() {
   const wheelStepLockTimeoutRef = useRef<number | null>(null);
   const frameRef = useRef<number | null>(null);
   const bodyLockStylesRef = useRef<BodyLockStyles | null>(null);
+  const isMagnetActiveRef = useRef(false);
+  const magnetTargetYRef = useRef<number | null>(null);
+  const magnetAnimationRef = useRef<number | null>(null);
   const [hasEntered, setHasEntered] = useState(false);
   const [activeStep, setActiveStep] = useState(0);
   const [isPinned, setIsPinned] = useState(false);
+  const [isPinTransitioning, setIsPinTransitioning] = useState(false);
   const [isDesktop, setIsDesktop] = useState(false);
 
   useEffect(() => {
@@ -120,9 +126,7 @@ export default function ScrollStepsSection() {
     body.style.top = previousStyles.top;
     body.style.left = previousStyles.left;
     body.style.right = previousStyles.right;
-    body.style.width = previousStyles.width;
     body.style.overflowY = previousStyles.overflowY;
-    body.style.paddingRight = previousStyles.paddingRight;
     body.style.touchAction = previousStyles.touchAction;
     body.style.overscrollBehavior = previousStyles.overscrollBehavior;
     html.style.overscrollBehavior = previousStyles.htmlOverscrollBehavior;
@@ -132,16 +136,13 @@ export default function ScrollStepsSection() {
   const lockPageScroll = () => {
     const body = document.body;
     const html = document.documentElement;
-    const scrollbarGap = window.innerWidth - html.clientWidth;
 
     bodyLockStylesRef.current = {
       position: body.style.position,
       top: body.style.top,
       left: body.style.left,
       right: body.style.right,
-      width: body.style.width,
       overflowY: body.style.overflowY,
-      paddingRight: body.style.paddingRight,
       touchAction: body.style.touchAction,
       overscrollBehavior: body.style.overscrollBehavior,
       htmlOverscrollBehavior: html.style.overscrollBehavior,
@@ -151,9 +152,7 @@ export default function ScrollStepsSection() {
     body.style.top = `-${lockScrollYRef.current}px`;
     body.style.left = "0";
     body.style.right = "0";
-    body.style.width = "100%";
-    body.style.overflowY = "scroll";
-    body.style.paddingRight = scrollbarGap > 0 ? `${scrollbarGap}px` : body.style.paddingRight;
+    body.style.overflowY = "hidden";
     body.style.touchAction = "none";
     body.style.overscrollBehavior = "none";
     html.style.overscrollBehavior = "none";
@@ -187,6 +186,38 @@ export default function ScrollStepsSection() {
     return () => observer.disconnect();
   }, []);
 
+  const easeOutCubic = (t: number) => 1 - Math.pow(1 - t, 3);
+
+  const animateMagnetScroll = (startY: number, targetY: number) => {
+    const startTime = performance.now();
+
+    const step = (currentTime: number) => {
+      const elapsed = currentTime - startTime;
+      const progress = Math.min(elapsed / MAGNET_DURATION_MS, 1);
+      const easedProgress = easeOutCubic(progress);
+      const currentY = startY + (targetY - startY) * easedProgress;
+
+      window.scrollTo({ top: currentY, behavior: "auto" });
+
+      if (progress < 1) {
+        magnetAnimationRef.current = requestAnimationFrame(step);
+      } else {
+        magnetAnimationRef.current = null;
+      }
+    };
+
+    magnetAnimationRef.current = requestAnimationFrame(step);
+  };
+
+  const cancelMagnetAnimation = () => {
+    if (magnetAnimationRef.current != null) {
+      cancelAnimationFrame(magnetAnimationRef.current);
+      magnetAnimationRef.current = null;
+    }
+    isMagnetActiveRef.current = false;
+    magnetTargetYRef.current = null;
+  };
+
   useEffect(() => {
     if (!isDesktop) return;
     const handleScroll = () => {
@@ -199,33 +230,54 @@ export default function ScrollStepsSection() {
         const contentNode = contentRef.current;
         if (!sectionNode || !contentNode || isPinned) return;
 
-        const viewportCenter = window.innerHeight / 2;
+        const anchorLine = window.innerHeight * PIN_ANCHOR_RATIO;
         const sectionRect = sectionNode.getBoundingClientRect();
         const contentRect = contentNode.getBoundingClientRect();
         const contentCenter = contentRect.top + contentRect.height / 2;
 
         if (repinBlockedRef.current) {
-          const hasFullyMovedAway = sectionRect.bottom < viewportCenter - REPIN_RESET_DISTANCE_PX || sectionRect.top > viewportCenter + REPIN_RESET_DISTANCE_PX;
+          const hasFullyMovedAway = sectionRect.bottom < anchorLine - REPIN_RESET_DISTANCE_PX || sectionRect.top > anchorLine + REPIN_RESET_DISTANCE_PX;
           if (hasFullyMovedAway) {
             repinBlockedRef.current = false;
+            cancelMagnetAnimation();
           }
           return;
         }
 
-        const centerLineIsInsideSection = sectionRect.top < viewportCenter && sectionRect.bottom > viewportCenter;
-        if (!centerLineIsInsideSection) {
+        const anchorLineIsInsideSection = sectionRect.top < anchorLine && sectionRect.bottom > anchorLine;
+        if (!anchorLineIsInsideSection) {
+          cancelMagnetAnimation();
           return;
         }
 
-        if (Math.abs(contentCenter - viewportCenter) <= PIN_CAPTURE_TOLERANCE_PX) {
+        const distanceToAnchor = contentCenter - anchorLine;
+        const absDistance = Math.abs(distanceToAnchor);
+
+        if (absDistance <= PIN_CAPTURE_TOLERANCE_PX) {
+          cancelMagnetAnimation();
+
           lockScrollYRef.current = window.scrollY;
           wheelGestureLockRef.current = false;
           touchGestureConsumedRef.current = false;
           awaitWheelGestureEndRef.current = true;
           awaitTouchReleaseRef.current = touchStartYRef.current != null;
           edgeReleaseAttemptsRef.current = { up: 0, down: 0 };
+
+          setIsPinTransitioning(true);
           lockPageScroll();
           setIsPinned(true);
+
+          setTimeout(() => {
+            setIsPinTransitioning(false);
+          }, PIN_SETTLE_MS);
+          return;
+        }
+
+        if (absDistance <= PIN_MAGNET_ZONE_PX && !isMagnetActiveRef.current) {
+          isMagnetActiveRef.current = true;
+          const targetScrollY = window.scrollY + distanceToAnchor;
+          magnetTargetYRef.current = targetScrollY;
+          animateMagnetScroll(window.scrollY, targetScrollY);
         }
       });
     };
@@ -235,6 +287,7 @@ export default function ScrollStepsSection() {
     window.addEventListener("resize", handleScroll);
 
     return () => {
+      cancelMagnetAnimation();
       if (frameRef.current != null) {
         cancelAnimationFrame(frameRef.current);
       }
@@ -468,7 +521,11 @@ export default function ScrollStepsSection() {
     <section ref={sectionRef} className="px-4 pt-8 pb-8 sm:px-6 sm:pt-12 sm:pb-12">
       <div
         ref={contentRef}
-        className={`container-page grid items-center gap-12 transition-all duration-[950ms] [transition-timing-function:cubic-bezier(0.2,0.75,0.2,1)] md:gap-16 lg:grid-cols-[minmax(0,1fr)_41%] lg:gap-[84px] ${
+        className={`container-page grid items-center gap-12 md:gap-16 lg:grid-cols-[minmax(0,1fr)_41%] lg:gap-[84px] ${
+          isPinTransitioning
+            ? "pin-settle-animation"
+            : "transition-all duration-[950ms] [transition-timing-function:cubic-bezier(0.2,0.75,0.2,1)]"
+        } ${
           hasEntered ? "translate-y-0 opacity-100 blur-0" : "translate-y-8 opacity-0 blur-[6px]"
         }`}
       >

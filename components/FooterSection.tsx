@@ -77,7 +77,7 @@ export default function FooterSection() {
               />
             </div>
 
-            <div className="grid w-full items-start gap-10 sm:ml-auto sm:max-w-[420px] sm:grid-cols-2">
+            <div className="grid w-full grid-cols-2 items-start gap-6 sm:ml-auto sm:max-w-[420px] sm:gap-10">
               <div>
                 <p className="text-[12px] font-semibold uppercase tracking-[0.08em] text-[#6a7383]">General</p>
                 <ul className="mt-4 space-y-3 text-[14px] text-[#1f2a37]">
