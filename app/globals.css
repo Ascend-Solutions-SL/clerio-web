@@ -97,6 +97,44 @@ html {
   animation: statement-rise 850ms cubic-bezier(0.2, 0.68, 0.18, 1) both;
 }
 
+.estimator-slider {
+  appearance: none;
+  -webkit-appearance: none;
+  background: transparent;
+  height: 24px;
+  cursor: pointer;
+}
+
+.estimator-slider::-webkit-slider-runnable-track {
+  height: 24px;
+  background: transparent;
+}
+
+.estimator-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 20px;
+  height: 20px;
+  margin-top: 2px;
+  border-radius: 9999px;
+  border: 2px solid rgba(255, 255, 255, 0.96);
+  background: linear-gradient(180deg, #2d7ef6 0%, #1f73f1 100%);
+  box-shadow: 0 10px 18px rgba(31, 115, 241, 0.28);
+}
+
+.estimator-slider::-moz-range-track {
+  height: 24px;
+  background: transparent;
+}
+
+.estimator-slider::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border-radius: 9999px;
+  border: 2px solid rgba(255, 255, 255, 0.96);
+  background: linear-gradient(180deg, #2d7ef6 0%, #1f73f1 100%);
+  box-shadow: 0 10px 18px rgba(31, 115, 241, 0.28);
+}
+
 @media (prefers-reduced-motion: reduce) {
   .logo-marquee-track,
   .statement-reveal {

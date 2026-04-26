@@ -1,6 +1,9 @@
 import FeatureShowcaseSection from "@/components/FeatureShowcaseSection";
+import FounderTestimonialSection from "@/components/FounderTestimonialSection";
 import IntegrationsMarqueeSection from "@/components/IntegrationsMarqueeSection";
 import PremiumStatementSection from "@/components/PremiumStatementSection";
+import PricingSection from "@/components/PricingSection";
+import SavingsEstimatorSection from "@/components/SavingsEstimatorSection";
 import ScrollStepsSection from "@/components/ScrollStepsSection";
 
 export default function Home() {
@@ -82,6 +85,12 @@ export default function Home() {
       <PremiumStatementSection />
 
       <ScrollStepsSection />
+
+      <FounderTestimonialSection />
+
+      <PricingSection />
+
+      <SavingsEstimatorSection />
 
       <section className="pt-8 pb-20 sm:pt-12 sm:pb-24 px-4 sm:px-6">
         <div className="mx-auto max-w-5xl">
