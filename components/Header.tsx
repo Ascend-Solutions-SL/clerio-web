@@ -3,7 +3,7 @@
 import { useState } from "react";
 
 export default function Header() {
-  const navItems = ["Home", "Productos", "Integraciones", "Recursos", "Clientes", "Pricing"];
+  const navItems = ["Inicio", "Productos", "Integraciones", "Recursos", "Clientes", "Pricing"];
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (

@@ -103,10 +103,7 @@ function RecommendationCard({ plan, invoiceCount }: { plan: PricingPlan; invoice
   const includedFeatures = getPricingPlanFeatures(plan).filter((feature) => feature.included).slice(0, 4);
 
   return (
-    <div>
-      <p className="mb-3 text-[14px] font-semibold leading-[1.4] text-[#1f2937] sm:text-[15px]">El paquete adecuado según tus necesidades</p>
-
-      <div className="statement-reveal rounded-[24px] border border-[#e1e9f4] bg-[linear-gradient(180deg,rgba(255,255,255,0.94)_0%,rgba(248,250,253,0.96)_100%)] p-3 shadow-[0_16px_38px_rgba(15,23,42,0.06)]">
+    <div className="rounded-[24px] border border-[#e1e9f4] bg-[linear-gradient(180deg,rgba(255,255,255,0.94)_0%,rgba(248,250,253,0.96)_100%)] p-3 shadow-[0_16px_38px_rgba(15,23,42,0.06)]">
       <div className={`rounded-[20px] px-4 py-4 sm:px-5 ${plan.accentClass}`}>
         <div className="grid gap-4 md:grid-cols-[minmax(0,0.7fr)_minmax(0,1fr)] md:items-start">
           <div className="min-w-0">
@@ -120,26 +117,33 @@ function RecommendationCard({ plan, invoiceCount }: { plan: PricingPlan; invoice
             </div>
           </div>
 
-          <div className="flex flex-col items-start gap-2 md:pt-1">
-            {plan.featured ? (
-              <span className="rounded-full bg-white/82 px-3 py-1 text-[10px] font-semibold text-[#425268] shadow-[0_8px_20px_rgba(15,23,42,0.08)]">
-                más popular
-              </span>
-            ) : null}
+          <div className="flex flex-col items-start md:pt-1">
+            <div className="flex w-full flex-col">
+              <p className="text-[13px] font-semibold text-[#344255]">Incluye:</p>
 
-            <p className="text-[13px] font-semibold text-[#344255]">Incluye:</p>
+              <div className="mt-2 flex min-h-[132px] flex-col justify-start">
+                <ul className="grid gap-1.5 text-[12px] text-[#344255] sm:text-[13px]">
+                  {includedFeatures.map((feature) => (
+                    <FeatureRow key={`${plan.id}-${feature.label}`} label={feature.label} included={feature.included} />
+                  ))}
+                </ul>
+              </div>
 
-              <ul className="grid gap-1.5 text-[12px] text-[#344255] sm:text-[13px]">
-                {includedFeatures.map((feature) => (
-                  <FeatureRow key={`${plan.id}-${feature.label}`} label={feature.label} included={feature.included} />
-                ))}
-              </ul>
-
-              {exceedsCatalog ? (
-                <span className="rounded-full border border-white/70 bg-white/78 px-3 py-1 text-[12px] font-semibold text-[#1f5dc9] shadow-[0_6px_14px_rgba(15,23,42,0.04)]">
-                  Consultar volumen superior
-                </span>
-              ) : null}
+              <div className="mt-2 flex min-h-[28px] items-center">
+                {plan.featured ? (
+                  <span className="rounded-full border border-[#1f73f1]/55 bg-white px-3 py-1 text-[11px] font-semibold text-[#1f5dc9] shadow-[0_10px_22px_rgba(31,115,241,0.22)] ring-1 ring-[#1f73f1]/20">
+                    Más popular
+                  </span>
+                ) : exceedsCatalog ? (
+                  <span className="rounded-full border border-white/70 bg-white/78 px-3 py-1 text-[11px] font-semibold text-[#1f5dc9] shadow-[0_6px_14px_rgba(15,23,42,0.04)]">
+                    Consultar volumen superior
+                  </span>
+                ) : (
+                  <span aria-hidden="true" className="invisible rounded-full px-3 py-1 text-[11px] font-semibold">
+                    &nbsp;
+                  </span>
+                )}
+              </div>
             </div>
           </div>
         </div>
@@ -152,6 +156,7 @@ export default function SavingsEstimatorSection() {
   const sectionRef = useRef<HTMLElement | null>(null);
   const hasRevealedRef = useRef(false);
   const [isVisible, setIsVisible] = useState(false);
+  const [isRecommendationVisible, setIsRecommendationVisible] = useState(true);
   const [invoiceIndex, setInvoiceIndex] = useState(3);
   const [avgMinutes, setAvgMinutes] = useState(5);
   const [peopleCount, setPeopleCount] = useState(1);
@@ -195,15 +200,34 @@ export default function SavingsEstimatorSection() {
       savingsPercent: currentSavingsPercent,
     };
   }, [avgMinutes, invoiceCount]);
+  const [displayedPlan, setDisplayedPlan] = useState(recommendedPlan);
+
+  useEffect(() => {
+    if (displayedPlan.id === recommendedPlan.id) {
+      setIsRecommendationVisible(true);
+      return;
+    }
+
+    setIsRecommendationVisible(false);
+
+    const swapTimeout = window.setTimeout(() => {
+      setDisplayedPlan(recommendedPlan);
+      setIsRecommendationVisible(true);
+    }, 170);
+
+    return () => {
+      window.clearTimeout(swapTimeout);
+    };
+  }, [displayedPlan.id, recommendedPlan]);
 
   const invoicePercentage = (invoiceIndex / (invoiceLevels.length - 1)) * 100;
   const minutesPercentage = ((avgMinutes - 1) / 9) * 100;
   const peoplePercentage = ((peopleCount - 1) / 2) * 100;
 
   return (
-    <section ref={sectionRef} className="px-4 pt-4 pb-10 sm:px-6 sm:pt-6 sm:pb-14">
+    <section ref={sectionRef} className="px-4 py-10 sm:px-6 sm:py-14">
       <div
-        className={`container-page transition-all duration-[950ms] [transition-timing-function:cubic-bezier(0.2,0.75,0.2,1)] ${
+        className={`container-page grid gap-4 transition-all duration-[900ms] [transition-timing-function:cubic-bezier(0.2,0.75,0.2,1)] ${
           isVisible ? "translate-y-0 opacity-100 blur-0" : "translate-y-8 opacity-0 blur-[6px]"
         }`}
       >
@@ -317,7 +341,15 @@ export default function SavingsEstimatorSection() {
             </div>
 
             <div className="mt-auto pt-5">
-              <RecommendationCard key={recommendedPlan.id} plan={recommendedPlan} invoiceCount={invoiceCount} />
+              <p className="mb-3 text-[14px] font-semibold leading-[1.4] text-[#1f2937] sm:text-[15px]">El paquete adecuado según tus necesidades</p>
+
+              <div
+                className={`min-h-[264px] transition-opacity duration-200 ease-out ${
+                  isRecommendationVisible ? "opacity-100" : "opacity-0"
+                }`}
+              >
+                <RecommendationCard plan={displayedPlan} invoiceCount={invoiceCount} />
+              </div>
             </div>
           </div>
         </div>
@@ -326,7 +358,7 @@ export default function SavingsEstimatorSection() {
           <a
             href={loginUrl}
             className={`group relative inline-flex h-10 w-full max-w-[164px] items-center justify-center overflow-hidden rounded-[12px] border px-5 text-[14px] font-semibold text-[#0d1b33] ring-1 ring-white/75 transition-all duration-300 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4e8fff]/45 active:scale-[0.985] ${
-              recommendedPlan.featured
+              displayedPlan.featured
                 ? "border-[#9bbfff] bg-[linear-gradient(180deg,#f8fbff_0%,#dfeeff_34%,#bdd7ff_100%)] shadow-[0_16px_34px_rgba(31,115,241,0.22),inset_0_1px_0_rgba(255,255,255,0.96)] hover:-translate-y-[2px] hover:border-[#6ea5ff] hover:shadow-[0_24px_48px_rgba(31,115,241,0.28),inset_0_1px_0_rgba(255,255,255,0.98)]"
                 : "border-[#c5d4e8] bg-[linear-gradient(180deg,#ffffff_0%,#edf4ff_28%,#d7e4f7_100%)] shadow-[0_14px_30px_rgba(57,84,125,0.12),inset_0_1px_0_rgba(255,255,255,0.94)] hover:-translate-y-[2px] hover:border-[#9db8dc] hover:shadow-[0_22px_40px_rgba(79,114,171,0.18),inset_0_1px_0_rgba(255,255,255,0.98)]"
             }`}

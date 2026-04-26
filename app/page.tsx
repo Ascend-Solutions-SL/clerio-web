@@ -1,4 +1,6 @@
+import FaqSection from "@/components/FaqSection";
 import FeatureShowcaseSection from "@/components/FeatureShowcaseSection";
+import FooterSection from "@/components/FooterSection";
 import FounderTestimonialSection from "@/components/FounderTestimonialSection";
 import IntegrationsMarqueeSection from "@/components/IntegrationsMarqueeSection";
 import PremiumStatementSection from "@/components/PremiumStatementSection";
@@ -10,11 +12,7 @@ export default function Home() {
   const faqItems = [
     {
       q: "¿Necesito cambiar de software contable para usar Clerio?",
-      a: "No, Clerio no sustituye tu software contable. Es un portal colaborativo que organiza, clasifica y centraliza tus facturas, y luego exporta toda la información lista para que tu asesoría la use en su propio programa (A3, SAGE, Contasol, Holded, etc.).",
-    },
-    {
-      q: "¿La asesoría paga algo por usar Clerio?",
-      a: "Sí. Clerio funciona como un portal profesional de colaboración entre asesoría y empresas, y requiere una suscripción. Aun así, el coste es muy bajo comparado con el ahorro de tiempo: la asesoría recibe la información de sus clientes lista para trabajar, sin perseguir documentos ni clasificarlos.",
+      a: "No, Clerio no sustituye tu software contable.\n\nClerio se encarga de recoger, organizar y estructurar todas tus facturas (correo, portales, archivos, etc.) y dejarlas listas para importarlas en tu sistema actual (A3, SAGE, Contasol, Holded, etc.).\n\nEn la práctica: mantienes tus herramientas, pero eliminas el caos previo.",
     },
     {
       q: "¿Qué integraciones soporta Clerio?",
@@ -92,25 +90,9 @@ export default function Home() {
 
       <SavingsEstimatorSection />
 
-      <section className="pt-8 pb-20 sm:pt-12 sm:pb-24 px-4 sm:px-6">
-        <div className="container-page-narrow">
-          <div className="text-center mb-10">
-            <div className="inline-flex rounded-full bg-gray-100 px-3 py-1 text-xs text-gray-600 mb-3">FAQ</div>
-            <h3 className="text-3xl sm:text-4xl font-bold text-gray-900">Preguntas frecuentes</h3>
-          </div>
-          <div className="divide-y divide-gray-200 bg-white rounded-2xl border border-gray-100">
-            {faqItems.map((f, i) => (
-              <details key={i} className="group p-6">
-                <summary className="flex items-center justify-between cursor-pointer list-none">
-                  <span className="font-medium text-gray-900">{f.q}</span>
-                  <span className="text-gray-400 group-open:rotate-45 transition">+</span>
-                </summary>
-                <p className="mt-3 text-gray-600">{f.a}</p>
-              </details>
-            ))}
-          </div>
-        </div>
-      </section>
+      <FaqSection items={faqItems} />
+
+      <FooterSection />
     </main>
   );
 }
