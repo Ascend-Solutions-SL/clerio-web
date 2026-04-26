@@ -95,6 +95,16 @@ export default function ScrollStepsSection() {
   const [hasEntered, setHasEntered] = useState(false);
   const [activeStep, setActiveStep] = useState(0);
   const [isPinned, setIsPinned] = useState(false);
+  const [isDesktop, setIsDesktop] = useState(false);
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const query = window.matchMedia("(min-width: 1024px) and (hover: hover) and (pointer: fine)");
+    const update = () => setIsDesktop(query.matches);
+    update();
+    query.addEventListener?.("change", update);
+    return () => query.removeEventListener?.("change", update);
+  }, []);
 
   useEffect(() => {
     activeStepRef.current = activeStep;
@@ -178,6 +188,7 @@ export default function ScrollStepsSection() {
   }, []);
 
   useEffect(() => {
+    if (!isDesktop) return;
     const handleScroll = () => {
       if (frameRef.current != null) {
         cancelAnimationFrame(frameRef.current);
@@ -230,9 +241,10 @@ export default function ScrollStepsSection() {
       window.removeEventListener("scroll", handleScroll);
       window.removeEventListener("resize", handleScroll);
     };
-  }, [isPinned]);
+  }, [isPinned, isDesktop]);
 
   useEffect(() => {
+    if (!isDesktop) return;
     const scheduleWheelAwaitUnlock = () => {
       if (wheelAwaitTimeoutRef.current != null) {
         window.clearTimeout(wheelAwaitTimeoutRef.current);
@@ -398,7 +410,7 @@ export default function ScrollStepsSection() {
       document.removeEventListener("touchmove", handleTouchMove, true);
       document.removeEventListener("touchend", handleTouchEnd, true);
     };
-  }, [isPinned]);
+  }, [isPinned, isDesktop]);
 
   useEffect(() => {
     return () => {
@@ -417,6 +429,40 @@ export default function ScrollStepsSection() {
       restorePageLockStyles();
     };
   }, []);
+
+  if (!isDesktop) {
+    return (
+      <section ref={sectionRef} className="px-4 pt-8 pb-8 sm:px-6 sm:pt-12 sm:pb-12">
+        <div
+          className={`mx-auto flex max-w-6xl flex-col gap-3 transition-all duration-[950ms] [transition-timing-function:cubic-bezier(0.2,0.75,0.2,1)] ${
+            hasEntered ? "translate-y-0 opacity-100 blur-0" : "translate-y-8 opacity-0 blur-[6px]"
+          }`}
+        >
+          <div className="inline-flex w-fit items-center rounded-[8px] border border-[#bcc4d1] px-3 py-1 text-[13px] font-medium text-[#3d4655]">
+            <span className="mr-2 h-1.5 w-1.5 rounded-full bg-[#4e8fff]" />
+            ¿Qué hace Clerio por ti?
+          </div>
+
+          {steps.map((step) => (
+            <article key={step.id} className="mt-6 first:mt-2">
+              <div className="flex items-center gap-3">
+                <span className={`h-7 w-7 ${step.marker}`} />
+                <p className="text-[12px] font-semibold uppercase tracking-[0.03em] text-[#2f3744]">{step.label}</p>
+              </div>
+
+              <h3 className="mt-5 max-w-[18ch] text-[34px] font-medium leading-[1.1] tracking-[-0.022em] text-[#0f1623] sm:max-w-[19ch] sm:text-[44px]">
+                {step.title}
+              </h3>
+
+              <p className="mt-5 max-w-[62ch] text-[18px] leading-[1.46] text-[#2f3746] sm:text-[20px]">{step.description}</p>
+
+              <div className={`mt-6 h-[260px] overflow-hidden rounded-[32px] sm:h-[340px] ${step.panelClass}`} />
+            </article>
+          ))}
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section ref={sectionRef} className="px-4 pt-8 pb-8 sm:px-6 sm:pt-12 sm:pb-12">
