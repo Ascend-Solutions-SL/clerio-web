@@ -114,36 +114,36 @@ export default function FeatureShowcaseSection() {
               <table className="w-full table-fixed border-collapse text-[9.5px] text-[#3e4758] sm:text-[10.5px]">
                 <thead className="bg-[#f5f7fa] text-[#5a6475]">
                   <tr>
-                    <th className="w-[27%] px-1.5 py-1.5 text-left font-semibold sm:w-[24%] sm:px-2">Fecha</th>
-                    <th className="w-[27%] px-1.5 py-1.5 text-left font-semibold sm:w-[24%] sm:px-2">Tipo</th>
-                    <th className="w-[28%] px-1.5 py-1.5 text-left font-semibold sm:w-[34%] sm:px-2">Contraparte</th>
-                    <th className="w-[18%] px-1.5 py-1.5 text-right font-semibold sm:w-[18%] sm:px-2">Importe</th>
+                    <th className="w-[22%] px-1 py-1.5 text-left font-semibold sm:w-[24%] sm:px-2">Fecha</th>
+                    <th className="w-[24%] px-1 py-1.5 text-left font-semibold sm:w-[24%] sm:px-2">Tipo</th>
+                    <th className="w-[22%] px-1 py-1.5 text-left font-semibold sm:w-[34%] sm:px-2">Contraparte</th>
+                    <th className="w-[32%] px-1 py-1.5 text-right font-semibold sm:w-[18%] sm:px-2">Importe</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr className="border-t border-[#edf1f6]">
-                    <td className="px-1.5 py-1.5 whitespace-nowrap sm:px-2">27/03/26</td>
-                    <td className="px-1.5 py-1.5 sm:px-2">
-                      <span className="rounded-full bg-[#def7ea] px-1.5 py-0.5 text-[10px] text-[#18794e]">Ingresos</span>
+                    <td className="px-1 py-1.5 whitespace-nowrap sm:px-2">27/03/26</td>
+                    <td className="px-1 py-1.5 sm:px-2">
+                      <span className="whitespace-nowrap rounded-full bg-[#def7ea] px-1 py-0.5 text-[9px] text-[#18794e] sm:px-1.5 sm:text-[10px]">Ingresos</span>
                     </td>
-                    <td className="px-1.5 py-1.5 truncate sm:px-2">Refri SL</td>
-                    <td className="px-1.5 py-1.5 text-right sm:px-2">748,84 €</td>
+                    <td className="px-1 py-1.5 truncate sm:px-2">Refri SL</td>
+                    <td className="px-1 py-1.5 text-right whitespace-nowrap sm:px-2">748,84 €</td>
                   </tr>
                   <tr className="border-t border-[#edf1f6]">
-                    <td className="px-1.5 py-1.5 whitespace-nowrap sm:px-2">24/03/26</td>
-                    <td className="px-1.5 py-1.5 sm:px-2">
-                      <span className="rounded-full bg-[#def7ea] px-1.5 py-0.5 text-[10px] text-[#18794e]">Ingresos</span>
+                    <td className="px-1 py-1.5 whitespace-nowrap sm:px-2">24/03/26</td>
+                    <td className="px-1 py-1.5 sm:px-2">
+                      <span className="whitespace-nowrap rounded-full bg-[#def7ea] px-1 py-0.5 text-[9px] text-[#18794e] sm:px-1.5 sm:text-[10px]">Ingresos</span>
                     </td>
-                    <td className="px-1.5 py-1.5 truncate sm:px-2">Sevifer SA</td>
-                    <td className="px-1.5 py-1.5 text-right sm:px-2">593,72 €</td>
+                    <td className="px-1 py-1.5 truncate sm:px-2">Sevifer SA</td>
+                    <td className="px-1 py-1.5 text-right whitespace-nowrap sm:px-2">593,72 €</td>
                   </tr>
                   <tr className="border-t border-[#edf1f6]">
-                    <td className="px-1.5 py-1.5 whitespace-nowrap sm:px-2">21/03/26</td>
-                    <td className="px-1.5 py-1.5 sm:px-2">
-                      <span className="rounded-full bg-[#def7ea] px-1.5 py-0.5 text-[10px] text-[#18794e]">Ingresos</span>
+                    <td className="px-1 py-1.5 whitespace-nowrap sm:px-2">21/03/26</td>
+                    <td className="px-1 py-1.5 sm:px-2">
+                      <span className="whitespace-nowrap rounded-full bg-[#def7ea] px-1 py-0.5 text-[9px] text-[#18794e] sm:px-1.5 sm:text-[10px]">Ingresos</span>
                     </td>
-                    <td className="px-1.5 py-1.5 truncate sm:px-2">Moviserca</td>
-                    <td className="px-1.5 py-1.5 text-right sm:px-2">512,48 €</td>
+                    <td className="px-1 py-1.5 truncate sm:px-2">Moviserca</td>
+                    <td className="px-1 py-1.5 text-right whitespace-nowrap sm:px-2">512,48 €</td>
                   </tr>
                 </tbody>
               </table>

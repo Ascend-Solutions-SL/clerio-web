@@ -46,7 +46,7 @@ export default function Home() {
 
   return (
     <main className="font-sans bg-[#f7f7f8] min-h-screen">
-      <section className="pt-36 sm:pt-40 md:pt-44 pb-10 sm:pb-12 px-4 sm:px-6">
+      <section id="inicio" className="pt-36 sm:pt-40 md:pt-44 pb-10 sm:pb-12 px-4 sm:px-6">
         <div className="container-page-narrow text-center">
           <h1 className="text-[36px] sm:text-[44px] md:text-[52px] leading-[1.08] font-semibold tracking-[-0.03em] text-[#0d1117]">
             <span className="block">Deja de perder tiempo</span>
@@ -72,21 +72,33 @@ export default function Home() {
         </div>
       </section>
 
-      <FeatureShowcaseSection />
+      <div id="productos">
+        <FeatureShowcaseSection />
+      </div>
 
-      <IntegrationsMarqueeSection />
+      <div id="integraciones">
+        <IntegrationsMarqueeSection />
+      </div>
 
       <PremiumStatementSection />
 
-      <ScrollStepsSection />
+      <div id="recursos">
+        <ScrollStepsSection />
+      </div>
 
-      <FounderTestimonialSection />
+      <div id="clientes">
+        <FounderTestimonialSection />
+      </div>
 
-      <PricingSection />
+      <div id="pricing">
+        <PricingSection />
+      </div>
 
       <SavingsEstimatorSection />
 
-      <FaqSection items={faqItems} />
+      <div id="faq">
+        <FaqSection items={faqItems} />
+      </div>
 
       <FooterSection />
     </main>

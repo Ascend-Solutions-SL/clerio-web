@@ -1,6 +1,7 @@
 "use client";
 
 import { ReactNode, useEffect, useRef, useState } from "react";
+import { addNavigationStartListener, isProgrammaticSectionNavigationActive } from "@/lib/section-navigation";
 
 type Step = {
   id: string;
@@ -167,6 +168,18 @@ export default function ScrollStepsSection() {
     });
   };
 
+  const releasePinForNavigation = () => {
+    cancelMagnetAnimation();
+    setIsPinned(false);
+    repinBlockedRef.current = true;
+    wheelGestureLockRef.current = false;
+    touchGestureConsumedRef.current = false;
+    awaitWheelGestureEndRef.current = false;
+    awaitTouchReleaseRef.current = false;
+    edgeReleaseAttemptsRef.current = { up: 0, down: 0 };
+    unlockPageScroll(0);
+  };
+
   useEffect(() => {
     const node = sectionRef.current;
     if (!node) return;
@@ -229,6 +242,11 @@ export default function ScrollStepsSection() {
         const sectionNode = sectionRef.current;
         const contentNode = contentRef.current;
         if (!sectionNode || !contentNode || isPinned) return;
+
+        if (isProgrammaticSectionNavigationActive()) {
+          cancelMagnetAnimation();
+          return;
+        }
 
         const anchorLine = window.innerHeight * PIN_ANCHOR_RATIO;
         const sectionRect = sectionNode.getBoundingClientRect();
@@ -294,6 +312,20 @@ export default function ScrollStepsSection() {
       window.removeEventListener("scroll", handleScroll);
       window.removeEventListener("resize", handleScroll);
     };
+  }, [isPinned, isDesktop]);
+
+  useEffect(() => {
+    if (!isDesktop) return;
+
+    return addNavigationStartListener(() => {
+      if (isPinned) {
+        releasePinForNavigation();
+        return;
+      }
+
+      cancelMagnetAnimation();
+      repinBlockedRef.current = true;
+    });
   }, [isPinned, isDesktop]);
 
   useEffect(() => {
@@ -383,6 +415,7 @@ export default function ScrollStepsSection() {
     };
 
     const handleWheel = (event: WheelEvent) => {
+      if (isProgrammaticSectionNavigationActive()) return;
       if (!isPinned) return;
 
       if (Math.abs(event.deltaY) < GESTURE_DELTA_THRESHOLD_PX) {
@@ -408,11 +441,13 @@ export default function ScrollStepsSection() {
     };
 
     const handleTouchStart = (event: TouchEvent) => {
+      if (isProgrammaticSectionNavigationActive()) return;
       touchStartYRef.current = event.touches[0]?.clientY ?? null;
       touchGestureConsumedRef.current = false;
     };
 
     const handleTouchMove = (event: TouchEvent) => {
+      if (isProgrammaticSectionNavigationActive()) return;
       if (!isPinned || touchStartYRef.current == null) return;
 
       const currentY = event.touches[0]?.clientY ?? touchStartYRef.current;

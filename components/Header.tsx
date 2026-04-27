@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { navigateToSection, navSectionIds } from "@/lib/section-navigation";
 
 export default function Header() {
   const navItems = ["Inicio", "Productos", "Integraciones", "Recursos", "Clientes", "Pricing"];
@@ -9,11 +10,17 @@ export default function Header() {
   return (
     <header className="fixed inset-x-0 top-0 z-50 bg-[#f7f7f8]">
       <div className="container-page-header px-4 sm:px-6 lg:px-8 pt-2">
-        <div className="h-6 rounded-full bg-[#c7dcf7] text-[11px] sm:text-[12px] text-[#3a4b63] flex items-center justify-center relative px-8 text-center">
+        <div className="h-6 rounded-full bg-[#c7dcf7] text-[11px] sm:text-[12px] text-[#3a4b63] flex items-center justify-center px-4 text-center">
           <span>
-            Consigue 2 meses gratis con tu plan <span className="font-semibold italic">anual</span>
+            Consigue 2 meses gratis con tu plan{" "}
+            <button
+              type="button"
+              onClick={() => navigateToSection(navSectionIds.Pricing)}
+              className="font-semibold italic transition-colors duration-200 hover:text-[#1f73f1]"
+            >
+              anual
+            </button>
           </span>
-          <span className="absolute right-3 top-1/2 -translate-y-1/2 text-[#66768f]">×</span>
         </div>
       </div>
 
@@ -25,8 +32,14 @@ export default function Header() {
         <nav className="hidden min-[900px]:flex flex-1 items-center justify-center min-w-0">
           <ul className="flex items-center gap-4 xl:gap-7 text-[12px] xl:text-[13px] text-[#1b2430] whitespace-nowrap">
             {navItems.map((item) => (
-              <li key={item} className="cursor-default select-none">
-                {item}
+              <li key={item}>
+                <button
+                  type="button"
+                  onClick={() => navigateToSection(navSectionIds[item])}
+                  className="transition-colors duration-200 hover:text-[#1f73f1]"
+                >
+                  {item}
+                </button>
               </li>
             ))}
           </ul>
@@ -105,7 +118,16 @@ export default function Header() {
                 }`}
                 style={{ transitionDelay: `${menuOpen ? 80 + index * 55 : 0}ms` }}
               >
-                {item}
+                <button
+                  type="button"
+                  onClick={() => {
+                    navigateToSection(navSectionIds[item]);
+                    setMenuOpen(false);
+                  }}
+                  className="w-full text-left"
+                >
+                  {item}
+                </button>
               </li>
             ))}
           </ul>
@@ -114,4 +136,3 @@ export default function Header() {
     </header>
   );
 }
-

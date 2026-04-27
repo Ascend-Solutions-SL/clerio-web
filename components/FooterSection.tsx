@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { loginUrl } from "@/lib/pricing-plans";
+import { navigateToSection, navSectionIds } from "@/lib/section-navigation";
 
 const generalLinks = [
   "Inicio",
@@ -82,8 +83,14 @@ export default function FooterSection() {
                 <p className="text-[12px] font-semibold uppercase tracking-[0.08em] text-[#6a7383]">General</p>
                 <ul className="mt-4 space-y-3 text-[14px] text-[#1f2a37]">
                   {generalLinks.map((item) => (
-                    <li key={item} className="cursor-default select-none">
-                      {item}
+                    <li key={item}>
+                      <button
+                        type="button"
+                        onClick={() => navigateToSection(navSectionIds[item])}
+                        className="text-left transition-colors duration-200 hover:text-[#1f73f1]"
+                      >
+                        {item}
+                      </button>
                     </li>
                   ))}
                 </ul>
@@ -93,8 +100,18 @@ export default function FooterSection() {
                 <p className="text-[12px] font-semibold uppercase tracking-[0.08em] text-[#6a7383]">Recursos</p>
                 <ul className="mt-4 space-y-3 text-[14px] text-[#1f2a37]">
                   {resourceLinks.map((item) => (
-                    <li key={item} className="cursor-default select-none">
-                      {item}
+                    <li key={item}>
+                      {item === "Preguntas Frecuentes" ? (
+                        <button
+                          type="button"
+                          onClick={() => navigateToSection(navSectionIds[item])}
+                          className="transition-colors duration-200 hover:text-[#1f73f1]"
+                        >
+                          {item}
+                        </button>
+                      ) : (
+                        <span className="cursor-default select-none">{item}</span>
+                      )}
                     </li>
                   ))}
                 </ul>
@@ -104,7 +121,7 @@ export default function FooterSection() {
 
           <div className="relative z-10 mt-8 flex flex-col gap-6 border-t border-[#d8dde5] pt-5 sm:flex-row sm:items-center sm:justify-between">
             <div className="flex flex-wrap items-center gap-x-5 gap-y-2 text-[12px] text-[#6a7383]">
-              <span>© {new Date().getFullYear()} Clerio</span>
+              <span>&copy; {new Date().getFullYear()} Clerio</span>
               {legalLinks.map((item) => (
                 <span key={item} className="cursor-default select-none">
                   {item}
