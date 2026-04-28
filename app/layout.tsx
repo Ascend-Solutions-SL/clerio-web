@@ -5,6 +5,10 @@ import Header from "@/components/Header";
 export const metadata: Metadata = {
   title: "Clerio",
   description: "FAQ y acceso a login",
+  icons: {
+    icon: "/logos/favicon.ico",
+    apple: "/logos/logo_clerio.png",
+  },
 };
 
 export default function RootLayout({
