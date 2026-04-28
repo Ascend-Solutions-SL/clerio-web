@@ -86,9 +86,9 @@ export default function Home() {
         <ScrollStepsSection />
       </div>
 
-      <div id="clientes">
+      {/* <div id="clientes">
         <FounderTestimonialSection />
-      </div>
+      </div> */}
 
       <div id="pricing">
         <PricingSection />
